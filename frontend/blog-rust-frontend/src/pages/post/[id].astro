@@ -1,0 +1,18 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const {id} = Astro.params;
+console.log(id)
+
+const response = await fetch(`http://127.0.0.1:8080/one/${id}`)
+const result = await response.json()
+---
+
+
+<Layout title={result.name}>
+<div  >
+    <img src={result.img} transition:name={`playlist ${result?.id} image`}/>
+    <h1 transition:name=`post-${result.id}` transition:animate="none" class="text-white text-6xl mb-5">{result.name}</h1>
+    <p class="text-white text-2xl">{result.description}</p>
+</div>
+</Layout>
